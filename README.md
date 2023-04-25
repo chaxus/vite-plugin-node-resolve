@@ -8,13 +8,17 @@
 [![libera manifesto](https://img.shields.io/badge/libera-manifesto-lightgrey.svg)](https://liberamanifesto.com)
 
 # vite-plugin-node-resolve
+
 A vite plugin to solve the problem that vite natively does not support packaging node built-in modules
 
 ## Install
+
 Using npm:
+
 ```console
 npm install vite-plugin-node-resolve --save-dev
 ```
+
 ## Usage
 
 Create a vite.config.ts configuration file and import the plugin:
@@ -30,4 +34,3 @@ export default defineConfig({
 ### Meta
 
 [LICENSE (MIT)](/LICENSE)
-

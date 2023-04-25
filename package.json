@@ -1,0 +1,37 @@
+{
+    "name": "vite-plugin-node-resolve",
+    "version": "0.0.1",
+    "description": "A vite plugin to solve the problem that vite natively does not support packaging node built-in modules",
+    "main": "./dist/index.umd.js",
+    "module": "./dist/index.mjs",
+    "exports": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.umd.js"
+    },
+    "repository": {
+      "url": "https://github.com/chaxus/vite-plugin-node-resolve"
+    },
+    "homepage": "https://github.com/chaxus/vite-plugin-node-resolve/#readme",
+    "scripts": {
+      "build": "tsc --noEmit && vite build",
+      "prepublish": "npm run build"
+    },
+    "keywords": [
+      "vite",
+      "plugin",
+      "node",
+      "npm",
+      "modules"
+    ],
+    "author": "chaxus",
+    "license": "MIT",
+    "devDependencies": {
+      "@types/node": "^18.16.0",
+      "es-module-lexer": "^1.2.1",
+      "vite": "^4.3.1",
+      "vite-plugin-dts": "^2.3.0"
+    },
+    "types": "./dist/index.d.ts"
+  }
+  
