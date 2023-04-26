@@ -46,8 +46,8 @@ export default function vitePluginNodeResolve(): Plugin {
     },
     load(id) {
       console.log("load----", id);
+      // 如果发现有 node 内置模块，阻止 vite 自己的 load 声明周期
       if (id.startsWith(nodeModuleId)) {
-        // const importer = moduleIdMapImporter.get(id);
         const path = id.replace(`${nodeModuleId}:`, "");
         if (isBuiltin(path)) {
           return `export default {}`;
@@ -59,10 +59,10 @@ export default function vitePluginNodeResolve(): Plugin {
     async transform(source, importer) {
       if (importer.startsWith(nodeModuleId)) {
         const path = importer.replace(`${nodeModuleId}:`, "");
-        let content = moduleCacheFile.get(importer) 
-        if(!content){
-          content = fs.readFileSync(moduleIdMapImporter.get(path),'utf-8')
-          moduleCacheFile.set(importer,content)
+        let content = moduleCacheFile.get(importer)
+        if (!content) {
+          content = fs.readFileSync(moduleIdMapImporter.get(path), 'utf-8')
+          moduleCacheFile.set(importer, content)
         }
         // AST 解析，获取 import 的方式：
         // 1. import fs from 'node:fs'
@@ -77,14 +77,7 @@ export default function vitePluginNodeResolve(): Plugin {
             map: null,
           };
         }
-        // const code = moduleMap.get(importer);
-        // return {
-        //   code,
-        //   map: null,
-        // };
       }
-      // console.log("transform---------", importer);
-      // console.log("transform---->", source, importer);
       return {
         code: source,
         map: null,
